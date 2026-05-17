@@ -159,6 +159,7 @@ As study hours increase, the share of A/B/C grades rises sharply and the failure
 - 📱 **Social media** has a mild negative effect (−2 points per extra hour)
 - 🏠 **Family background & gender** have almost no impact on results — outcomes are driven by **individual behaviour**
 - 📉 `previous_gpa` (r ≈ 0.89) is the strongest predictor statistically, but it reflects the past **study habits are what students can change now**
+  
 ->  Gender, parental education level, and family income demonstrate minimal to negligible impact on final exam scores. What matters most is the amount of time dedicated to studying and the extent to which distractions such as social media are managed. These conclusions are consistent across both Excel PivotTables and Python visualisations, lending them strong internal validity.
 ---
  
