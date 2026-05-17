@@ -2,8 +2,6 @@
 Introduction to Business Analytics
 # 📊 Student Exam Performance — Exploratory Data Analysis
 
-> # 📊 Student Academic Performance — Exploratory Data Analysis (EDA)
-
 > **MIS 311 – Introduction to Business Analytics**
 > Eastern International University (EIU)
 >  Nguyen Hoang Phuong 
