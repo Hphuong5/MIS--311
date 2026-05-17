@@ -70,10 +70,10 @@ Calculated using Excel (`AVERAGE`, `STDEV`, `MIN`, `MAX`, `MEDIAN`) and verified
 ### PivotTable Analysis (Excel)
 **Pivot Table 1 — Academic outcomes by gender**
  
-| Gender | Students | Avg Final Score | Median Score | Pass Count | Fail Count | Pass Rate | Grade A (%) |
-|--------|----------|----------------|--------------|------------|------------|-----------|-------------|
-| Female | 4,987 | 49.80 | 49.65 | 2,504 | 2,483 | 50.2% | 5.1% |
-| Male | 5,013 | 49.56 | 49.42 | 2,498 | 2,515 | 49.8% | 4.9% |
+| Gender | Students | Avg Final Score | Median Score | Pass Count | Fail Count | 
+|--------|----------|----------------|--------------|------------|------------|
+| Female | 4,987 | 49.80 | 49.65 | 2,504 | 2,483 |
+| Male | 5,013 | 49.56 | 49.42 | 2,498 | 2,515 | 
 | **Total** | **10,000** | **49.68** | **49.55** | **5,002** | **4,998** | **50.0%** | **5.0%** |
  
 > Gender has almost no impact — the difference in average score between female and male is only **0.24 points**.
@@ -82,15 +82,15 @@ Calculated using Excel (`AVERAGE`, `STDEV`, `MIN`, `MAX`, `MEDIAN`) and verified
  
 **Pivot Table 2 — Academic outcomes by study hours per day**
  
-| Study Hours/Day | Students | Avg Final Score | Pass Rate | Grade A (%) | Grade F (%) |
-|-----------------|----------|----------------|-----------|-------------|-------------|
-| 0 – 1 hr | 1,210 | 36.0 | 6.4% | 0.0% | 68.2% |
-| 1 – 2 hrs | 1,850 | 42.1 | 24.7% | 0.3% | 44.6% |
-| 2 – 3 hrs | 2,040 | 47.3 | 42.5% | 1.1% | 28.4% |
-| 3 – 4 hrs | 1,930 | 52.8 | 63.2% | 2.8% | 13.6% |
-| 4 – 5 hrs | 1,620 | 58.4 | 79.8% | 6.3% | 4.2% |
-| 5 – 6 hrs | 890 | 63.9 | 91.5% | 11.7% | 0.9% |
-| **6+ hrs** | **460** | **69.6** | **100%** | **19.2%** | **0.0%** |
+| Study Hours/Day | Students | Avg Final Score | Pass Rate |
+|-----------------|----------|----------------|-----------|
+| 0 – 1 hr | 1,210 | 36.0 | 6.4% | 
+| 1 – 2 hrs | 1,850 | 42.1 | 24.7% | 
+| 2 – 3 hrs | 2,040 | 47.3 | 42.5% | 
+| 3 – 4 hrs | 1,930 | 52.8 | 63.2% |
+| 4 – 5 hrs | 1,620 | 58.4 | 79.8% |
+| 5 – 6 hrs | 890 | 63.9 | 91.5% |
+| **6+ hrs** | **460** | **69.6** | **100%** |
  
 > Each extra hour of study ≈ **+5.93 points** on the final exam (r = 0.576).
  
