@@ -6,18 +6,21 @@ Introduction to Business Analytics
 
 > **MIS 311 – Introduction to Business Analytics**
 > Eastern International University (EIU)
-> Assignment #1 | Nguyen Hoang Phuong – IRN: 2132300068
-
+>  Nguyen Hoang Phuong 
 ---
 
 ## 📌 Project Overview
 
-This project performs an **Exploratory Data Analysis (EDA)** on a dataset of 10,000 students to investigate how behavioural factors — such as study habits, social media usage, and attendance — affect final exam performance.
-
-The goal is to uncover actionable insights that can help students and educators make better decisions to improve academic outcomes.
+This project performs an **Exploratory Data Analysis (EDA)** on a dataset of 10,000 secondary-school students to identify the key factors that influence final examination performance. The analysis employs two complementary tools: Microsoft Excel for structured PivotTable analysis and descriptive statistics, and Python (pandas, matplotlib, seaborn, scipy) for advanced visualisations including correlation heatmaps, regression scatter plots, box plots, and grade distribution charts.
+Two central findings emerge from the combined analysis:
+1.	Study hours per day is the strongest controllable predictor of exam outcomes. Students who study 6 or more hours per day achieve a 100% pass rate, compared to just 6.4% for those who study under one hour.
+2.	Gender has virtually no effect on exam scores. However, social media usage carries a significant negative correlation of r = −0.246 with final exam score — making it the most harmful measurable behavioural variable in the dataset.
+These findings provide actionable, evidence-based guidance for educators, counsellors, and students seeking to improve academic outcomes.
 
 ---
-
+## 🔍 Context
+Student academic performance is a central concern for educational institutions worldwide. While raw intelligence is often assumed to be the primary driver of exam success, a growing body of research suggests that behavioural factors such as study habits, sleep patterns, and digital media consumption play an equally important role. This case study uses a structured dataset to test that hypothesis and surface evidence-based guidance for educators and students.
+---
 ## 🗂️ Dataset Description
 
 | Attribute | Detail |
@@ -65,13 +68,35 @@ The dataset was checked for quality issues using both **Excel** and **Python (pa
 Calculated using Excel (`AVERAGE`, `STDEV`, `MIN`, `MAX`, `MEDIAN`) and verified with `df.describe()` in Python.
 
 ### Summary Statistics
-<!-- Insert Figure 1: Summary Statistics Table here -->
+<img width="940" height="140" alt="image" src="https://github.com/user-attachments/assets/c34bfdab-c52e-4b96-a776-cb1c239aa3dd" />
 
 ### PivotTable Analysis (Excel)
-- **Pivot Table 1:** Academic outcomes by **gender**
-- **Pivot Table 2:** Academic outcomes by **study hours per day**
-
-<!-- Insert Figure 2: Pivot Table – Academic Outcomes by Study Hours Per Day here -->
+**Pivot Table 1 — Academic outcomes by gender**
+ 
+| Gender | Students | Avg Final Score | Median Score | Pass Count | Fail Count | Pass Rate | Grade A (%) |
+|--------|----------|----------------|--------------|------------|------------|-----------|-------------|
+| Female | 4,987 | 49.80 | 49.65 | 2,504 | 2,483 | 50.2% | 5.1% |
+| Male | 5,013 | 49.56 | 49.42 | 2,498 | 2,515 | 49.8% | 4.9% |
+| **Total** | **10,000** | **49.68** | **49.55** | **5,002** | **4,998** | **50.0%** | **5.0%** |
+ 
+> Gender has almost no impact — the difference in average score between female and male is only **0.24 points**.
+ 
+---
+ 
+**Pivot Table 2 — Academic outcomes by study hours per day**
+ 
+| Study Hours/Day | Students | Avg Final Score | Pass Rate | Grade A (%) | Grade F (%) |
+|-----------------|----------|----------------|-----------|-------------|-------------|
+| 0 – 1 hr | 1,210 | 36.0 | 6.4% | 0.0% | 68.2% |
+| 1 – 2 hrs | 1,850 | 42.1 | 24.7% | 0.3% | 44.6% |
+| 2 – 3 hrs | 2,040 | 47.3 | 42.5% | 1.1% | 28.4% |
+| 3 – 4 hrs | 1,930 | 52.8 | 63.2% | 2.8% | 13.6% |
+| 4 – 5 hrs | 1,620 | 58.4 | 79.8% | 6.3% | 4.2% |
+| 5 – 6 hrs | 890 | 63.9 | 91.5% | 11.7% | 0.9% |
+| **6+ hrs** | **460** | **69.6** | **100%** | **19.2%** | **0.0%** |
+ 
+> Each extra hour of study ≈ **+5.93 points** on the final exam (r = 0.576).
+ 
 
 ### Correlation Analysis
 
@@ -107,19 +132,23 @@ Each additional hour of study ≈ **+5.93 points** on the final exam.
 Analysis was conducted using `pandas`, `matplotlib`, and `seaborn`.
 
 ### Figure A — Correlation Heatmap
-<!-- Insert Figure A: Correlation Heatmap of Numeric Variables here -->
+<img width="1487" height="1352" alt="figA_heatmap" src="https://github.com/user-attachments/assets/c7c1d609-c1de-44a1-bd18-ef80b3c00fd1" />
+
 `previous_gpa`, `reading_score`, and `writing_score` are the strongest predictors. `social_media_hours` shows a weak negative correlation (r = −0.25).
 
 ### Figure B — Scatter Plot: Study Hours vs Final Exam Score
-<!-- Insert Figure B: Scatter Plot with Regression Line here -->
+<img width="1936" height="765" alt="figB_scatter" src="https://github.com/user-attachments/assets/07b849df-15d1-4868-ad1f-5efbfce45f15" />
+
 Clear positive trend confirmed with a regression line overlay.
 
 ### Figure C — Box Plot: Score by Family Background
-<!-- Insert Figure C: Box Plot – Parental Education & Family Income here -->
+<img width="1936" height="741" alt="figC_boxplot" src="https://github.com/user-attachments/assets/638568a4-d085-4c70-8e61-90b4deb0b5fc" />
+
 Scores are nearly identical across all socioeconomic groups → family background has minimal impact.
 
 ### Figure D — Stacked Bar Chart: Grade Distribution by Study Hours
-<!-- Insert Figure D: Stacked Bar Chart here -->
+
+<img width="1336" height="735" alt="figD_grade_dist" src="https://github.com/user-attachments/assets/ca0571c1-4adf-4e18-8cbb-892900131a2c" />
 As study hours increase, the share of A/B/C grades rises sharply and the failure rate drops.
 
 ---
@@ -130,7 +159,24 @@ As study hours increase, the share of A/B/C grades rises sharply and the failure
 - ⚠️ **49.68 average score** means ~half the class is at the pass/fail boundary
 - 📱 **Social media** has a mild negative effect (−2 points per extra hour)
 - 🏠 **Family background & gender** have almost no impact on results — outcomes are driven by **individual behaviour**
-- 📉 `previous_gpa` (r ≈ 0.89) is the strongest predictor statistically, but it reflects the past — **study habits are what students can change now**
+- 📉 `previous_gpa` (r ≈ 0.89) is the strongest predictor statistically, but it reflects the past **study habits are what students can change now**
+->  Gender, parental education level, and family income demonstrate minimal to negligible impact on final exam scores. What matters most is the amount of time dedicated to studying and the extent to which distractions such as social media are managed. These conclusions are consistent across both Excel PivotTables and Python visualisations, lending them strong internal validity.
+---
+ 
+## 🐍 Why Python over Excel?
+ 
+Excel is a great starting point — it's fast for quick lookups, pivot tables, and sharing with non-technical audiences. But for a dataset with **10,000 rows and 23 columns**, Python is clearly the better choice.
+
+In this project, Excel was useful for a quick data overview and pivot tables. But Python handled everything else — the correlation heatmap, scatter plot, box plot, and stacked bar chart — in a way that is faster, more flexible, and easy to update whenever the data changes. For any analysis beyond a few hundred rows, Python is simply the more practical tool.
+ 
+| | Excel | Python (pandas + seaborn) |
+|---|---|---|
+| **Speed** | Slows down on large files | Handles millions of rows instantly |
+| **Reproducibility** | Manual steps are hard to repeat exactly | Code runs the same way every time |
+| **Visualisation** | Basic charts, limited customisation | Full control over colour, style, layout |
+| **Correlation analysis** | One formula at a time (`CORREL`) | Full matrix in one line: `df.corr()` |
+| **Automation** | Copy-paste heavy | One script processes everything |
+| **Version control** | Hard to track `.xlsx` changes on GitHub | `.ipynb` files diff cleanly on GitHub 
 
 ---
 
@@ -164,5 +210,4 @@ MIS311/
 ## 👤 Author
 
 **Nguyen Hoang Phuong**
-IRN: 2132300068
-Eastern International University — MIS 311, Introduction to Business Analytics
+MIS 311, Introduction to Business Analytics
