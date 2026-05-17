@@ -2,209 +2,167 @@
 Introduction to Business Analytics
 # 📊 Student Exam Performance — Exploratory Data Analysis
 
-> **MIS 311 · Introduction to Business Analytics · Assignment #1 Part 1**
+> # 📊 Student Academic Performance — Exploratory Data Analysis (EDA)
+
+> **MIS 311 – Introduction to Business Analytics**
 > Eastern International University (EIU)
+> Assignment #1 | Nguyen Hoang Phuong – IRN: 2132300068
 
 ---
 
 ## 📌 Project Overview
 
-This project presents a full **Exploratory Data Analysis (EDA)** on a dataset of **10,000 secondary-school students**, investigating the behavioural, demographic, and academic factors that influence final examination performance.
+This project performs an **Exploratory Data Analysis (EDA)** on a dataset of 10,000 students to investigate how behavioural factors — such as study habits, social media usage, and attendance — affect final exam performance.
 
-The analysis was conducted using two complementary tools:
-- **Microsoft Excel** — PivotTables, descriptive statistics, correlation functions, and charts
-- **Python** — `pandas`, `matplotlib`, `seaborn`, `scipy` for advanced visualisations and statistical modelling
+The goal is to uncover actionable insights that can help students and educators make better decisions to improve academic outcomes.
 
 ---
 
-## 🎯 Key Questions
+## 🗂️ Dataset Description
 
-- Does daily study time meaningfully affect exam scores and pass rates?
-- Does gender play a role in academic performance?
-- Does social media usage hurt exam outcomes?
-- Do background factors — parental education, family income — predict performance?
+| Attribute | Detail |
+|---|---|
+| 📁 Source | MIS 311 course material, Eastern International University |
+| 👥 Records | 10,000 students |
+| 📐 Variables | 23 columns (13 numeric, 10 categorical) |
+| 🎂 Age Range | 15 – 18 years old |
+| ⚧ Gender Split | Female: 49.9% · Male: 50.1% |
+| 🎯 Key Outcome | `final_exam_score`, `pass_fail`, `grade_category` |
+| 🔍 Key Predictors | `study_hours_per_day`, `attendance_rate`, `social_media_hours`, `previous_gpa` |
+
+### 📖 Variable Glossary
+
+| Variable | Description |
+|---|---|
+| `study_hours_per_day` | Average hours the student studies per day |
+| `attendance_rate` | % of classes attended (0–100%) |
+| `social_media_hours` | Average daily hours on social media |
+| `assignment_completion_rate` | % of assignments submitted on time |
+| `previous_gpa` | GPA from the previous academic period (0.0–4.0) |
+| `final_exam_score` | Final exam score (0–100) |
+| `pass_fail` | Pass (≥ 50) or Fail (< 50) |
+| `grade_category` | Letter grade: A (80+), B (70–79), C (60–69), D (50–59), F (<50) |
+| `parental_education` | Parent's highest education: High School / Bachelor / Master / PhD |
+| `family_income` | Household income level: Low / Medium / High |
+
+---
+
+## 🧹 Data Cleaning
+
+The dataset was checked for quality issues using both **Excel** and **Python (pandas)**.
+
+| Check | Excel Method | Python Method | Result |
+|---|---|---|---|
+| Missing Values | Home → Find & Select → Go To Special → Blanks | `df.isnull().sum()` | ✅ 0 missing values |
+| Duplicate Rows | Data → Remove Duplicates (by `student_id`) | `df.duplicated().sum()` | ✅ 0 duplicates |
+
+> **Conclusion:** The dataset was already clean — no further cleaning was needed.
+
+---
+
+## 📈 Descriptive Statistics
+
+Calculated using Excel (`AVERAGE`, `STDEV`, `MIN`, `MAX`, `MEDIAN`) and verified with `df.describe()` in Python.
+
+### Summary Statistics
+<!-- Insert Figure 1: Summary Statistics Table here -->
+
+### PivotTable Analysis (Excel)
+- **Pivot Table 1:** Academic outcomes by **gender**
+- **Pivot Table 2:** Academic outcomes by **study hours per day**
+
+<!-- Insert Figure 2: Pivot Table – Academic Outcomes by Study Hours Per Day here -->
+
+### Correlation Analysis
+
+Calculated with Excel's `CORREL` function and Python's `df.corr()`.
+
+| Variable Pair | Correlation (r) | Interpretation |
+|---|---|---|
+| `previous_gpa` ↔ `final_exam_score` | **r ≈ 0.89** | Very strong positive |
+| `study_hours_per_day` ↔ `final_exam_score` | **r = 0.576** | Moderate positive |
+| `social_media_hours` ↔ `final_exam_score` | **r = −0.25** | Weak negative |
+
+---
+
+## 💡 Key Insights
+
+### Insight 1 — Most Students Are Right at the Pass/Fail Line
+> The average final exam score is **49.68** (SD = 12.15), just below the passing threshold of 50. The median is 49.55. Nearly half of all students are sitting right at the boundary — meaning even a small improvement in behaviour could push many from **Fail → Pass**.
+
+### Insight 2 — Study Hours Have a Huge Impact
+> Daily study time is the **most important controllable factor**.
+
+| Study Hours/Day | Avg Score | Pass Rate |
+|---|---|---|
+| 0 – 1 hour | 36.0 | 6.4% |
+| 6+ hours | 69.6 | **100%** |
+
+Each additional hour of study ≈ **+5.93 points** on the final exam.
+
+---
+
+## 🐍 Python Visualisations
+
+Analysis was conducted using `pandas`, `matplotlib`, and `seaborn`.
+
+### Figure A — Correlation Heatmap
+<!-- Insert Figure A: Correlation Heatmap of Numeric Variables here -->
+`previous_gpa`, `reading_score`, and `writing_score` are the strongest predictors. `social_media_hours` shows a weak negative correlation (r = −0.25).
+
+### Figure B — Scatter Plot: Study Hours vs Final Exam Score
+<!-- Insert Figure B: Scatter Plot with Regression Line here -->
+Clear positive trend confirmed with a regression line overlay.
+
+### Figure C — Box Plot: Score by Family Background
+<!-- Insert Figure C: Box Plot – Parental Education & Family Income here -->
+Scores are nearly identical across all socioeconomic groups → family background has minimal impact.
+
+### Figure D — Stacked Bar Chart: Grade Distribution by Study Hours
+<!-- Insert Figure D: Stacked Bar Chart here -->
+As study hours increase, the share of A/B/C grades rises sharply and the failure rate drops.
+
+---
+
+## 🔍 Key Findings Summary
+
+- 📚 **Study hours** is the #1 controllable factor — 6+ hours/day = 100% pass rate
+- ⚠️ **49.68 average score** means ~half the class is at the pass/fail boundary
+- 📱 **Social media** has a mild negative effect (−2 points per extra hour)
+- 🏠 **Family background & gender** have almost no impact on results — outcomes are driven by **individual behaviour**
+- 📉 `previous_gpa` (r ≈ 0.89) is the strongest predictor statistically, but it reflects the past — **study habits are what students can change now**
+
+---
+
+## 🛠️ Tools Used
+
+![Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=flat&logo=microsoft-excel&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=flat)
+![Seaborn](https://img.shields.io/badge/Seaborn-4c9be8?style=flat)
 
 ---
 
 ## 📁 Repository Structure
 
 ```
-📦 student-exam-performance-eda/
-│
-├── 📂 data/
-│   └── 13_Student_Exam_Performance.xlsx     # Raw dataset (10,000 rows × 23 cols)
-│
-├── 📂 output_figures/                        # All generated charts
-│   ├── fig1_gender.png
-│   ├── fig2_study_hours.png
-│   ├── fig3_histogram.png
-│   ├── figA_heatmap.png
-│   ├── figB_scatter.png
-│   ├── figC_boxplot.png
-│   └── figD_grade_dist.png
-│
-├── 📂 excel/
-│   └── MIS311_Analysis.xlsx                  # Excel workbook (PivotTables + Charts)
-│
-├── eda.py                                    # Main Python analysis script
-├── requirements.txt                          # Python dependencies
-└── README.md
+MIS311/
+├── README.md               ← You are here
+├── data/
+│   └── student_data.csv    ← Dataset
+├── notebooks/
+│   └── EDA_Analysis.ipynb  ← Python EDA notebook
+├── excel/
+│   └── EDA_Analysis.xlsx   ← Excel analysis & PivotTables
+└── report/
+    └── MIS311_EDA_Report.docx ← Full written report
 ```
 
 ---
 
-## 🗃️ Dataset
+## 👤 Author
 
-| Attribute | Detail |
-|-----------|--------|
-| Source | MIS 311 Course Material, EIU |
-| Rows | 10,000 students |
-| Columns | 23 variables |
-| Target Variables | `final_exam_score`, `pass_fail`, `grade_category` |
-| Data Types | 13 numeric · 10 categorical |
-
-**Key variables:** `study_hours_per_day`, `attendance_rate`, `social_media_hours`, `assignment_completion_rate`, `previous_gpa`, `parental_education`, `family_income`
-
----
-
-## 🧹 Data Cleaning
-
-| Check | Result |
-|-------|--------|
-| Missing values | ✅ 0 across all 23 columns |
-| Duplicate rows | ✅ 0 full-row duplicates |
-| Duplicate `student_id` | ✅ 0 |
-
-The dataset was fully clean — **no imputation or removal required.**
-
----
-
-## 📊 Excel Analysis
-
-### Descriptive Statistics
-Computed using `AVERAGE`, `STDEV`, `MIN`, `MAX`, `MEDIAN`, `QUARTILE` for 8 core numeric variables.
-
-### PivotTable 1 — Performance by Gender
-
-| Gender | Count | Avg Final Score | Pass Rate |
-|--------|-------|----------------|-----------|
-| Female | 4,987 | 49.81 | 48.91% |
-| Male | 5,013 | 49.56 | 48.25% |
-
-### PivotTable 2 — Performance by Study Hours / Day
-
-| Study Hours | Count | Avg Score | Pass Rate |
-|-------------|-------|-----------|-----------|
-| 0 – 1 h | 485 | 35.96 | 6.4% |
-| 1 – 2 h | 1,503 | 41.15 | 17.5% |
-| 2 – 3 h | 2,982 | 46.83 | 37.0% |
-| 3 – 4 h | 2,959 | 52.18 | 58.7% |
-| 4 – 5 h | 1,586 | 58.22 | 80.1% |
-| 5 – 6 h | 425 | 63.49 | 92.7% |
-| 6 h + | 60 | 69.56 | **100.0%** |
-
-### Correlation Table (CORREL function)
-
-| Variable | r with `final_exam_score` |
-|----------|--------------------------|
-| `previous_gpa` | **+0.891** |
-| `study_hours_per_day` | **+0.576** |
-| `assignment_completion_rate` | +0.171 |
-| `attendance_rate` | +0.151 |
-| `sleep_hours` | +0.028 |
-| `social_media_hours` | **−0.246** |
-
----
-
-## 🐍 Python Analysis
-
-### Figures Produced
-
-| Figure | Chart Type | Key Finding |
-|--------|-----------|-------------|
-| Fig 1 | Bar Chart — Score by Gender | Female ≈ Male (Δ = 0.25 pts) |
-| Fig 2 | Dual-axis Column + Line | Every +1 h study ≈ +6 pts, +15% pass rate |
-| Fig 3 | Histogram — Score Distribution | Near-normal, mean 49.7; 51.7% fail |
-| Fig A | Correlation Heatmap | `previous_gpa` dominates; `social_media` negative |
-| Fig B | Scatter + Regression | slope = **+5.93**/hr, R² = 0.332, p < 0.001 |
-| Fig C | Box Plot by Group | All education/income groups nearly identical |
-| Fig D | Stacked Bar — Grade by Study Hrs | F-rate collapses from 94% → 0% as hours increase |
-
-### Running the Code
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/your-username/student-exam-performance-eda.git
-cd student-exam-performance-eda
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Place dataset in root folder, then run
-python eda.py
-```
-
-Output figures are saved automatically to `./output_figures/`.
-
-### Dependencies
-
-```
-pandas >= 2.0
-numpy >= 1.24
-matplotlib >= 3.7
-seaborn >= 0.12
-scipy >= 1.10
-openpyxl >= 3.1
-```
-
----
-
-## 💡 Key Insights
-
-### Insight 1 — Study Hours Is the Strongest Controllable Driver
-
-> Every additional hour of daily study is associated with **+5.93 points** on the final exam (r = 0.576, R² = 0.332, p < 0.001). Students studying 6+ hours per day achieve a **100% pass rate**; those studying under 1 hour have only a **6.4% pass rate**.
-
-**Implication:** Academic support should prioritise building structured daily study habits. Even a one-hour increase in daily study time produces a meaningful improvement in both score and pass likelihood.
-
----
-
-### Insight 2 — Gender Is Negligible; Social Media Is a Hidden Risk
-
-> Gender accounts for a difference of just **0.25 points** in average final score — statistically negligible. However, `social_media_hours` carries a correlation of **r = −0.246** with `final_exam_score` — the most harmful measurable behavioural variable in the dataset.
-
-**Implication:** Across both genders, excessive social media use appears to displace study time. Digital wellness interventions could raise overall pass rates without targeting any specific demographic group.
-
----
-
-### Insight 3 — Background Factors Do Not Predict Performance
-
-> Box plots across all parental education levels (High School / Bachelor / Master / PhD) and all family income groups (Low / Medium / High) show **near-identical medians and IQRs** (~41–58). Background factors are not meaningful predictors of exam outcomes in this dataset.
-
-**Implication:** Effort and behaviour are the primary levers — not socioeconomic background.
-
----
-
-## 🛠️ Tools Used
-
-| Tool | Purpose |
-|------|---------|
-| Microsoft Excel | PivotTables, descriptive stats, CORREL(), Charts |
-| Python — `pandas` | Data loading, groupby, aggregation |
-| Python — `matplotlib` | All chart rendering |
-| Python — `seaborn` | Heatmap, box plots |
-| Python — `scipy.stats` | Regression, p-values |
-
----
-
-## 📚 References
-
-- Eastern International University (EIU). (2025). *Student Exam Performance dataset* [Course material]. MIS 311 – Introduction to Business Analytics.
-- McKinney, W. (2022). *Python for Data Analysis* (3rd ed.). O'Reilly Media.
-- Waskom, M. (2021). seaborn: Statistical data visualization. *Journal of Open Source Software, 6*(60), 3021.
-
----
-
-<p align="center">
-  <sub>MIS 311 · Eastern International University · Assignment #1 Part 1</sub>
-</p>
+**Nguyen Hoang Phuong**
+IRN: 2132300068
+Eastern International University — MIS 311, Introduction to Business Analytics
