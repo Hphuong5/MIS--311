@@ -11,10 +11,7 @@
 ## 📌 Project Overview
 
 This project performs an **Exploratory Data Analysis (EDA)** on a dataset of 10,000 secondary-school students to identify the key factors that influence final examination performance. The analysis employs two complementary tools: Microsoft Excel for structured PivotTable analysis and descriptive statistics, and Python (pandas, matplotlib, seaborn, scipy) for advanced visualisations including correlation heatmaps, regression scatter plots, box plots, and grade distribution charts.
-Two central findings emerge from the combined analysis:
-1.	Study hours per day is the strongest controllable predictor of exam outcomes. Students who study 6 or more hours per day achieve a 100% pass rate, compared to just 6.4% for those who study under one hour.
-2.	Gender has virtually no effect on exam scores. However, social media usage carries a significant negative correlation of r = −0.246 with final exam score — making it the most harmful measurable behavioural variable in the dataset.
-These findings provide actionable, evidence-based guidance for educators, counsellors, and students seeking to improve academic outcomes.
+
 ---
 
 ## 🔍 Context for the data
